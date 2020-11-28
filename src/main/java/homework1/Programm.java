@@ -31,8 +31,6 @@ public class Programm {
                 System.out.printf("Congrats, " + name);
 
         } while (GuessNumber != UserNumber);
-        Arrays.sort(UserArray);
-        System.out.println("User numbers are: " + Arrays.toString(UserArray));
 
    }
 }
