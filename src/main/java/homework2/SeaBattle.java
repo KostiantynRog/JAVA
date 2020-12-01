@@ -5,13 +5,20 @@ import java.util.Scanner;
 
 public class SeaBattle {
 
+
     public static void main(String[] args) {
 
         System.out.println("All set. Get ready to rumble!");
+
          generateField();
-         editField();
+         editField(,6,8 );
         }
-    public static void generateField() {
+
+     private char field;
+
+
+
+    public static char[][] generateField() {
       char [][]  field = new char[5][5];
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
@@ -26,30 +33,40 @@ public class SeaBattle {
             }
             System.out.println();
         }
+        return field;
     }
     public static void print (char[][] generateField){
         System.out.print(Arrays.deepToString(generateField));
     }
-    public static void editField (char generateField, int targetRow, int targetColumn){
-        Random random = new Random();
-        targetRow = random.nextInt(4);
-        targetColumn = random.nextInt(4);
+    public static void editField (char [][] field, int targetRow, int targetColumn){
+       Random random = new Random();
+       targetRow = random.nextInt(4);
+       targetColumn = random.nextInt(4);
        int userRow;
        int userColumn;
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter your number of row from 1 to 5: ");
+        userRow = in.nextInt();
+        System.out.println("Enter your number of column from 1 to 5: ");
+        userColumn = in.nextInt();
+        System.out.println(userColumn);
+
       do {
-          Scanner in = new Scanner(System.in);
-          System.out.println("Enter your number of row from 1 to 5: ");
-           userRow = in.nextInt();
-          System.out.println("Enter your number of column from 1 to 5: ");
-          userColumn = in.nextInt();
-          System.out.println(userColumn);
-          if (userRow - 1 != targetRow & userColumn -1 != targetColumn){
-              System.out.println("You missed. Try again");
-          } else if (userRow - 1 != targetRow & userColumn -1 == targetColumn){
-              System.out.println("You missed. Try again");
-          }else {
-              System.out.println("You won!");
+          for( int i = 0; i < field.length; i++){
+              for (int j = 0; j < field.length; j++){
+                  if (userRow - 1 != targetRow & userColumn -1 != targetColumn){
+                        field[i][j] = '*';
+                      System.out.println("You missed. Try again");
+                  } else if (userRow - 1 != targetRow & userColumn -1 == targetColumn){
+                      System.out.println("You missed. Try again");
+                  }else if (userRow - 1 == targetRow & userColumn -1 == targetColumn){
+                      field[i][j] = 'X';
+                      System.out.println("You won!");
+                  }
+              }
           }
-      } while ( targetRow  ==  userRow & targetColumn ==  userColumn );
+
+
+      } while ( true);
     }
 }
