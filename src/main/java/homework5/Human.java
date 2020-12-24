@@ -1,9 +1,10 @@
-package homework4;
+package homework5;
+
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class Human{
+public class Human {
     private String name;
     private String surname;
     private int birthYear;
@@ -57,24 +58,29 @@ public class Human{
     void describePet() {
         if (this.getFamily() != null && this.getFamily().getPet() != null) {
             System.out.printf("I have a %s, its nickname  %s, it is %d years old and Bobby is %s ! ",
-             this.getFamily(). getPet().getSpecies(), this.getFamily().getPet().getNickname(),
-             this.getFamily().getPet().getAge(), this.getFamily().getPet().getTrickLevel() > 50 ? "tricky" : "not tricky");
+                    this.getFamily(). getPet().getSpecies(), this.getFamily().getPet().getNickname(),
+                    this.getFamily().getPet().getAge(), this.getFamily().getPet().getTrickLevel() > 50 ? "tricky" : "not tricky");
         }
     }
 
     @Override
     public  String toString() {
-        return "Human{" + "name=" + this.getName() + '\'' + ", surname=" + this.getSurname() + '\'' +
+        return "Human{" + "name=" + this.getName()  + ", surname=" + this.getSurname()  +
                 ", birthYear=" + this.getBirthYear() + ", iq=" + this.getIq() +
-                 ", shedule= " + this.getDaysOfWeek() + "}";
+                ", shedule=" + this.getDaysOfWeek() + "}";
     }
     @Override
     public boolean equals(Object obj){
         if (this == obj)
             return true;
-        if (!(obj instanceof Human))
+        if (!(obj instanceof homework4.Human))
             return false;
-        Human human = (Human)obj;
+        homework4.Human human = (homework4.Human)obj;
         return (Objects.equals(getName(), human.getName()) && Objects.equals(getSurname(), human.getSurname()));
     }
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.printf("Deleted: %s", this.toString());
+    }
+
 }

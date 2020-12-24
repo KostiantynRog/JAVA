@@ -1,5 +1,8 @@
-package homework4;
-import  java.util.Arrays;
+package homework5;
+
+
+
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Pet {
@@ -12,15 +15,15 @@ public class Pet {
     public Pet(){};
 
     public Pet(Animal species, String nickname){
-       this.species = species;
-       this.nickname = nickname;
+        this.species = species;
+        this.nickname = nickname;
     }
 
     public  Pet(String nickname, Animal species, int age, int trickLevel, String[] habits){
-       this(species, nickname);
-       this.age = age;
-       this.trickLevel = trickLevel;
-       this.habits = habits;
+        this(species, nickname);
+        this.age = age;
+        this.trickLevel = trickLevel;
+        this.habits = habits;
     }
     public String getNickname(){return nickname;}
     public void setNickname(String nickname){ this.nickname = nickname;}
@@ -38,17 +41,17 @@ public class Pet {
     public String[] getHabits(){return habits;}
     public void setHabits(String[] habits){this.habits = habits;}
 
-     void eat(){
+    void eat(){
         System.out.println("I am eating");
     }
-     void respond(){
+    void respond(){
         System.out.printf("Hi! Boss. I am %s. I missed you\n", this.getNickname());
     }
-     void foul(){ System.out.println("I have to hide somewhere...");}
+    void foul(){ System.out.println("I have to hide somewhere...");}
 
     @Override
     public String toString() {
-        return "Pet{" + "nickname='" + this.getNickname() + '\'' + ", species='" + this.getSpecies() + '\'' +
+        return "Pet{" + "nickname=" + this.getNickname()  + ", species=" + this.getSpecies() +
                 ", age=" + this.getAge() + ", trickLevel=" + this.getTrickLevel() + ", habits=" + Arrays.toString(this.getHabits()) +
                 "}";
     }
@@ -56,9 +59,14 @@ public class Pet {
     public boolean equals(Object obj){
         if (this == obj)
             return true;
-        if (!(obj instanceof Pet))
+        if (!(obj instanceof homework4.Pet))
             return false;
-        Pet pet = (Pet)obj;
+        homework4.Pet pet = (homework4.Pet)obj;
         return (Objects.equals(this.getSpecies(), pet.getSpecies()) && Objects.equals(this.getNickname(), pet.getNickname()));
     }
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.printf("Deleted: %s", this.toString());
+    }
+
 }
